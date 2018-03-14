@@ -5,13 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Website</title>
+    <style>
+
+        .content{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding-top: 25%;
+        }
+
+        .content h1{
+            font-size: 500%;
+        }
+
+        select{
+            flex: 1 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            font-size: 50px;
+        }
+
+    
+    </style>
 </head>
 <body>
+    <div class="content">
+        <h1>Animate Me!</h1>
+
         <select>
             <option value="bounce">Bounce</option>
             <option value="shrink">Shrink</option>
             <option value="grow">Grow</option>
             <option value="rotate">Rotate</option>
         </select>
+
+    </div>
 </body>
 </html>
