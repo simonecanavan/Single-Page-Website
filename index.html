@@ -25,7 +25,7 @@
         }
 
         .moving-object.bounce{
-            animation: bounce 1s infinite;
+            animation: bounce 1.5s infinite;
         }
 
         .moving-object.rotate{
@@ -33,7 +33,7 @@
         }
 
         .moving-object.flash{
-            animation: flash 1s;
+            animation: flash 1s infinite;
         }
 
         .moving-object.pulse{
@@ -41,15 +41,15 @@
         }
 
         .moving-object.rubberband{
-            animation: rubberband 2s;
+            animation: rubberband 3s;
         }
 
         .moving-object.swing{
-            animation: swing .8s infinite;
+            animation: swing 3s;
         }
 
         .moving-object.slideout{
-            animation: slideout 3s infinite;
+            animation: slideout 3s;
         }
 
         .moving-object.hinge{
@@ -60,8 +60,12 @@
             animation: jelly 1s infinite;
         }
 
+        .moving-object.shake{
+            animation: shake 1s infinite;
+        }
+
         select{
-            width: 100%;
+            width: 40%;
             flex: 1 0 auto;
             display: flex;
             justify-content: center;
@@ -88,19 +92,19 @@
             53%,
             80%{
                 animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-                transform: translateZ(0)
+                transform: none
             }
             40%,
             43% {
                 animation-timing-function: cubic-bezier(.755, .05, .855, .06);
-                transform: translate3d(0, -30px, 0)
+                transform: translate(0, -50px)
             }
             70% {
                 animation-timing-function: cubic-bezier(.755, .05, .855, .06);
-                transform: translate3d(0, -15px, 0)
+                transform: translate(0, -25px)
             }
             90% {
-                transform: translate3d(0, -4px, 0)
+                transform: translate(0, -4px)
             }
         }
 
@@ -110,9 +114,6 @@
             }
             50%{
                 transform: rotate(360deg);
-            }
-            100%{
-                transform: rotate(0);
             }
         }
 
@@ -132,7 +133,7 @@
                 transform: scaleX(1)
             }
             50% {
-                transform: scale3d(1.05, 1.05, 1.05)
+                transform: scale(1.5, 1.5)
             }
             to {
                 transform: scaleX(1)
@@ -144,19 +145,19 @@
                 transform: scaleX(1)
             }
             30% {
-                transform: scale3d(1.25, .75, 1)
+                transform: scale(1.25, .75)
             }
             40% {
-                transform: scale3d(.75, 1.25, 1)
+                transform: scale(.75, 1.25)
             }
             50% {
-                transform: scale3d(1.15, .85, 1)
+                transform: scale(1.15, .85)
             }
             65% {
-                transform: scale3d(.95, 1.05, 1)
+                transform: scale(.95, 1.05)
             }
             75% {
-                transform: scale3d(1.05, .95, 1)
+                transform: scale(1.05, .95)
             }
             100% {
                 transform: scaleX(1)
@@ -183,12 +184,11 @@
 
         @keyframes slideout {
             0% {
-                transform: translateZ(0);
+                transform: translateY(0);
                 opacity: 1;
             }
             100% {
-                visibility: hidden;
-                transform: translate3d(0, -100%, 0);
+                transform: translateY(-100%);
                 opacity: 0;
             }
         }
@@ -212,7 +212,7 @@
                 opacity: 1
             }
             100% {
-                transform: translate3d(0, 700px, 0);
+                transform: translate(0, 700px);
                 opacity: 0
             }
         }
@@ -245,6 +245,25 @@
             }
         }
 
+        @keyframes shake {
+        0%{
+            transform: none
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+            transform: translate(-10px, 0)
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+            transform: translate(10px, 0)
+        }
+    }
+
     
     </style>
 
@@ -257,6 +276,7 @@
         <h1 class="moving-object">Animate Me!</h1>
 
             <select class="animation-selection">
+                <option selected disabled>Choose an Animation</option>
                 <option value="bounce">Bounce</option>
                 <option value="rotate">Rotate</option>
                 <option value="flash">Flash</option>
@@ -266,6 +286,7 @@
                 <option value="slideout">Slide Out</option>
                 <option value="hinge">Hinge</option>
                 <option value="jelly">Jelly</option>
+                <option value="shake">Shake</option>
             </select>
 
         <button class="try" onclick="applyClass()">Try Me!</button>
