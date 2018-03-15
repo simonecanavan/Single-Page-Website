@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Titillium+Web" rel="stylesheet">
     <title>Website</title>
     <style>
 
@@ -12,11 +13,39 @@
             align-items: center;
             display: flex;
             flex-direction: column;
-            padding-top: 25%;
+            padding: 25% 0 35% 0;
+            background-color:bisque;
         }
 
-        .content h1{
+        .moving-object{
             font-size: 500%;
+            font-family: 'Indie Flower', cursive;
+            color: coral;
+            transition: all .2s;
+        }
+
+        .moving-object.bounce{
+            animation: bounce 1s infinite;
+        }
+
+        .moving-object.rotate{
+            animation: rotate 2s infinite;
+        }
+
+        .moving-object.flash{
+            animation: flash 1s;
+        }
+
+        .moving-object.pulse{
+            animation: pulse .5s infinite;
+        }
+
+        .moving-object.rubberband{
+            animation: rubberband 2s;
+        }
+
+        .moving-object.swing{
+            animation: swing .8s infinite;
         }
 
         select{
@@ -25,23 +54,138 @@
             justify-content: center;
             align-items: center;
             width: 30%;
-            font-size: 50px;
+            font-size: 200%;
+            font-family: 'Titillium Web', sans-serif;
+            background-color:coral;
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%,
+            20%,
+            53%,
+            80%,
+            to {
+                animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+                transform: translateZ(0)
+            }
+            40%,
+            43% {
+                animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+                transform: translate3d(0, -30px, 0)
+            }
+            70% {
+                animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+                transform: translate3d(0, -15px, 0)
+            }
+            90% {
+                transform: translate3d(0, -4px, 0)
+            }
+        }
+
+        @keyframes rotate {
+            0%{
+                transform: rotate(0);
+            }
+            50%{
+                transform: rotate(360deg);
+            }
+            100%{
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes flash {
+            0%,
+            50%{
+                opacity: 1
+            }
+            25%,
+            75% {
+                opacity: 0
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scaleX(1)
+            }
+            50% {
+                transform: scale3d(1.05, 1.05, 1.05)
+            }
+            to {
+                transform: scaleX(1)
+            }
+        }
+
+        @keyframes rubberband {
+            0% {
+                transform: scaleX(1)
+            }
+            30% {
+                transform: scale3d(1.25, .75, 1)
+            }
+            40% {
+                transform: scale3d(.75, 1.25, 1)
+            }
+            50% {
+                transform: scale3d(1.15, .85, 1)
+            }
+            65% {
+                transform: scale3d(.95, 1.05, 1)
+            }
+            75% {
+                transform: scale3d(1.05, .95, 1)
+            }
+            to {
+                transform: scaleX(1)
+            }
+        }
+
+        @keyframes swing {
+            20% {
+                transform: rotate(15deg)
+            }
+            40% {
+                transform: rotate(-10deg)
+            }
+            60% {
+                transform: rotate(5deg)
+            }
+            80% {
+                transform: rotate(-5deg)
+            }
+            to {
+                transform: rotate(0deg)
+            }
         }
 
     
     </style>
-</head>
-<body>
-    <div class="content">
-        <h1>Animate Me!</h1>
 
-        <select>
+</head>
+
+<body>
+
+    <div class="content">
+
+        <h1 class="moving-object">Animate Me!</h1>
+
+        <select class="animation-selection">
             <option value="bounce">Bounce</option>
-            <option value="shrink">Shrink</option>
-            <option value="grow">Grow</option>
             <option value="rotate">Rotate</option>
+            <option value="flash">Flash</option>
+            <option value="pulse">Pulse</option>
+            <option value="rubberband">Rubberband</option>
+            <option value="swing">Swing</option>
         </select>
 
+        <button onclick="applyClass()">Click me</button>
+
     </div>
+    
+    <script src="js/scripts.js">
+        
+    </script>
 </body>
 </html>
